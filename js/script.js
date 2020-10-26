@@ -1,5 +1,48 @@
 'use strict';
 
+const calculate = document.getElementById('start');
+const addIncomeBtn = document.getElementsByTagName('button')[0];
+const addExpensesBtn = document.getElementsByTagName('button')[1];
+const checkDeposit = document.querySelector('#deposit-check');
+const additionalIncomeItem = document.querySelectorAll('.additional_income-item');
+const budgetMonthValue = document.getElementsByClassName('budget_month-value');
+const budgetDayValue = document.getElementsByClassName('budget_day-value');
+const expensesMonthValue = document.getElementsByClassName('expenses_month-value');
+const addIncomeValue = document.getElementsByClassName('additional_income-value');
+const addExpensesValue = document.getElementsByClassName('additional_expenses-value');
+const incomePeriodValue = document.getElementsByClassName('income_period-value');
+const targetMonthValue = document.getElementsByClassName('target_month-value');
+const salaryAmount = document.querySelector('.salary-amount');
+const incomeTitle = document.querySelector('.income-title');
+const incomeAmount = document.querySelector('.income-amount');
+const expensesTitle = document.querySelector('.expenses-title');
+const expensesAmount = document.querySelector('.expenses-amount');
+const addExpensesItem = document.querySelector('.additional_expenses-item');
+const targetAmount = document.querySelector('.target-amount');
+const periodSelect = document.querySelector('.period-select');
+
+console.log(calculate);
+console.log(addIncomeBtn);
+console.log(addExpensesBtn);
+console.log(checkDeposit);
+console.log(additionalIncomeItem);
+console.log(budgetMonthValue);
+console.log(budgetDayValue);
+console.log(expensesMonthValue);
+console.log(addIncomeValue);
+console.log(addExpensesValue);
+console.log(incomePeriodValue);
+console.log(targetMonthValue);
+console.log(salaryAmount);
+console.log(incomeTitle);
+console.log(incomeAmount);
+console.log(expensesTitle);
+console.log(expensesAmount);
+console.log(addExpensesItem);
+console.log(targetAmount);
+console.log(periodSelect);
+
+
 let money,
     start = function () {
     
@@ -13,7 +56,7 @@ let money,
     return money;
 };
 
-start();
+//start();
 
 let appData = {
     income: {},
@@ -131,9 +174,9 @@ let appData = {
     }
 };
 
-appData.asking();
-appData.getBudget();
-appData.getStatusTargetMounth();
-appData.getStatusIncome();
-appData.appProgram();
+// appData.asking();
+// appData.getBudget();
+// appData.getStatusTargetMounth();
+// appData.getStatusIncome();
+// appData.appProgram();
 
