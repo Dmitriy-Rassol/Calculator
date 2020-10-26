@@ -24,29 +24,51 @@ let appData = {
     budgetMonth: 0,
     expensesMonth: 0,
     deposit: false,
+    percentDeposit: 0,
+    moneyDeposite: 0,
     mission: 150000,
     period: 0,
     asking: function() {
-        this.addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Кредит, квартплата');
-        this.addExpenses = this.addExpenses.toLowerCase().split(',');
+
+        if (confirm('Есть ли у вас дополнительный заработок?')) {
+            let itemIncome;
+            let cashIncome;
+
+            do {
+                itemIncome = prompt('Какой у вас дополнительный доход?', 'Таксую');
+            }
+            while(!isNaN(itemIncome) || itemIncome === '' || itemIncome === null);
+
+            do {
+                cashIncome = +prompt('Сколько вы на этом зарабатываете?', 10000).trim();
+            }
+            while (isNaN(cashIncome) || cashIncome === '' || cashIncome === null);
+            this.income[itemIncome] = cashIncome;
+        }
+
+        do {
+            this.addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Кредит, квартплата');
+            this.addExpenses = this.addExpenses.split(', ').map(word => word[0].toUpperCase() + word.slice(1)).join(', ');
+        }
+        while(!isNaN(this.addExpenses) || this.addExpenses === '' || this.addExpenses === null);
+        
         console.log('Возможные расходы за рассчитываемый период: ' + this.addExpenses + '');   
         this.deposit = confirm('Есть ли у вас депозит в банке?');
         console.log('Наличие депозита: ' + this.deposit + '');
     },
     getExpensesMonth: function () {
-        let sumExpenses = 0;
-        let expensesQuestion = '';
+        let sumExpenses;
+        let expensesQuestion;
         for ( let i = 0; i <2; i++) { 
 
             do {
-                expensesQuestion = prompt('Введите обязательную статью расходов').trim();
+                expensesQuestion = prompt('Введите обязательную статью расходов');
                 if (expensesQuestion === Object.keys(this.expenses).join()) {
                     alert("Данная статья расходов уже записана!");
                 }
             }
-            while (expensesQuestion === '' || expensesQuestion === Object.keys(this.expenses).join());
+            while (!isNaN(expensesQuestion) || expensesQuestion === '' ||  expensesQuestion === Object.keys(this.expenses).join());
             
-
             do {
                 sumExpenses = +prompt('Во сколько это обойдется?').trim();
             }
@@ -97,6 +119,15 @@ let appData = {
         for (let data in appData) {
             console.log(data, appData[data]);
         }
+    },
+    getInfoDeposite: function() {
+        if(this.deposit) {
+            this.percentDeposit = prompt('Какой годовой процент?', '10');
+            this.moneyDeposite = prompt('Какая сумму заложена?', 10000);
+        }
+    },
+    calcSavedMoney: function() {
+        return this.budgetMonth * this.period;
     }
 };
 
