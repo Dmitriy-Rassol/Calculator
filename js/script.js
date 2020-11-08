@@ -108,14 +108,14 @@ AppData.prototype.reset = function () {
 
     incomeItems.forEach((item, index) => {
         if (index > 0) {
-            item.parentNode.removeChild(item);
+            item.remove(item);
             addIncomeBtn.style.display = 'block';
         }
     });
 
     expensesItems.forEach((item, index) => {
         if (index > 0) {
-            item.parentNode.removeChild(item);
+            item.remove(item);
             addExpensesBtn.style.display = 'block';
         }
     });
