@@ -219,11 +219,9 @@ class AppData {
     }
 
     getBudget() {
-        console.log(this.moneyDeposit);
-        console.log(this.percentDeposit);
         if (this.moneyDeposit !== 0) {
             this.budgetMonth = this.budget + this.incomeMonth - this.expensesMonth + 
-        Math.floor(this.moneyDeposit + (this.moneyDeposit / this.percentDeposit));
+        Math.floor((this.moneyDeposit / 100) * this.percentDeposit);
         } else {
             this.budgetMonth = this.budget + this.incomeMonth - this.expensesMonth;        }
         
@@ -236,7 +234,7 @@ class AppData {
     }
 
     getInfoDeposit() {
-        if (depositCheck.checked) {
+        if (this.checkDepositHandler()) {
             this.percentDeposit = +depositPercent.value;
             this.moneyDeposit = +depositAmount.value;
         } else {
@@ -263,7 +261,6 @@ class AppData {
             depositPercent.addEventListener('change', appData.checkDepositPercent.bind(appData));
         } else {
             depositPercent.style.display = 'none';
-            console.log(+valueSelect);
             depositPercent.value = +valueSelect;
         }   
 
@@ -278,7 +275,7 @@ class AppData {
         if (depositCheck.checked) {
             depositBank.style.display = 'inline-block';
             depositBank.addEventListener('click', appData.changePercent.bind(appData));
-            this.deposit = true;
+            return this.deposit = true;
 
         } else {
             depositBank.style.display = 'none';
@@ -286,7 +283,7 @@ class AppData {
             depositPercent.value = '';
             depositAmount.value = '';
             depositBank.removeEventListener('click', appData.changePercent.bind(appData));
-            this.deposit = false;
+            return this.deposit = false;
         }
     }
 
@@ -319,5 +316,4 @@ class AppData {
 
 
 const appData = new AppData();
-console.log(appData);
 appData.eventListeners();
